@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Mensagem Especial 😄</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+            transition: background-color 0.3s;
+        }
+
+        #btnMensagem {
+            padding: 20px;
+            font-size: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            background-color: #ff5c5c;
+            color: white;
+        }
+
+        #mensagem {
+            display: none;
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+            color: #222;
+        }
+
+        .animar {
+            animation: aparecer 0.8s ease-out,
+                       tremer 0.4s ease-in-out 0.8s;
+        }
+
+        @keyframes aparecer {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes tremer {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            50% { transform: translateX(6px); }
+            75% { transform: translateX(-6px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Fundo piscando */
+        .piscar {
+            animation: fundo 0.4s infinite alternate;
+        }
+
+        @keyframes fundo {
+            from { background-color: #fff; }
+            to { background-color: #ffe0e0; }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnMensagem">Clica aqui 👀</button>
+
+    <div id="mensagem">
+        VAI TRABALHAR!!! 💼😤
+    </div>
+
+    <!-- Som -->
+    <audio id="som">
+        <source src="https://www.soundjay.com/buttons/sounds/button-10.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const botao = document.getElementById("btnMensagem");
+        const mensagem = document.getElementById("mensagem");
+        const som = document.getElementById("som");
+
+        botao.addEventListener("click", () => {
+            botao.style.display = "none";
+            mensagem.style.display = "block";
+
+            // Animação do texto
+            mensagem.classList.remove("animar");
+            void mensagem.offsetWidth;
+            mensagem.classList.add("animar");
+
+            // Fundo piscando
+            document.body.classList.add("piscar");
+
+            // Vibração (funciona em muitos celulares)
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200]);
+            }
+
+            // Som
+            som.play();
+
+            console.log("Modo zoeira ativado 😈");
+
+            // Redireciona após 4 segundos (opcional)
+            setTimeout(() => {
+                window.location.href = "LINK_AQUI";
+            }, 4000);
+        });
+    </script>
+
+</body>
+</html>
